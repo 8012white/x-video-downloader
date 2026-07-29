@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Twitter Video Downloader",
+  "version": "1.0.0",
+  "description": "手动下载 Twitter (X) 上的视频",
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "https://twitter.com/*",
+    "https://x.com/*",
+    "https://video.twimg.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://twitter.com/*",
+        "https://x.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["inject.js"],
+      "matches": [
+        "https://twitter.com/*",
+        "https://x.com/*"
+      ]
+    }
+  ]
+}
